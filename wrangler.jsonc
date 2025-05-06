@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-05-05",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env",
+  ],
+  "minify": true,
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "placement": { "mode": "smart" },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "unverceled-nextjs",
+    },
+  ],
+  // Add your own KV namespaces here
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "b5014697a8604758b4556c28796e353d",
+    },
+  ],
+
+  // Add your own D1 database name and id here
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "website-d1",
+      "database_id": "370ecad4-4eaa-4bd2-9767-e3ae9017c10a",
+    },
+  ],
+}
